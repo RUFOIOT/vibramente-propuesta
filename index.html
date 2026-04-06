@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibramente — Escuela-Lab Premium de Inteligencia Agéntica</title>
+  <meta name="description" content="Vibramente es la escuela-lab premium donde founders, profesionales y equipos convierten IA en agentes, procesos y sistemas útiles para su trabajo o negocio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070B14;--bg-2:#101826;--bg-3:#161F31;--panel:rgba(255,255,255,.06);--panel-2:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.1);--text:#F4F1EA;--muted:#C9D2E3;--soft:#9BA6BD;--violet:#7C5CFF;
+      --cyan:#55D6FF;--mint:#7EF7C9;--gold:#D6B36A;--magenta:#FF4FD8;--shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:24px;--radius-lg:34px;--container:min(1200px, calc(100vw - 40px));--ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background:radial-gradient(circle at 10% 10%, rgba(124,92,255,.22), transparent 30%),radial-gradient(circle at 82% 16%, rgba(85,214,255,.14), transparent 28%),radial-gradient(circle at 50% 72%, rgba(255,79,216,.08), transparent 22%),linear-gradient(180deg,#060910 0%,#091120 52%,#070b14 100%);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden}
+    body::before,body::after{content:"";position:fixed;width:42vw;height:42vw;border-radius:50%;filter:blur(90px);opacity:.16;pointer-events:none;z-index:0;animation:float 16s ease-in-out infinite alternate}
+    body::before{left:-10vw;top:-12vw;background:radial-gradient(circle,var(--violet),transparent 65%)} body::after{right:-12vw;bottom:-18vw;background:radial-gradient(circle,var(--cyan),transparent 65%);animation-duration:20s}
+    @keyframes float{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(3vw,3vh,0) scale(1.08)}} @keyframes shimmer{0%{transform:translateX(-130%) skewX(-18deg)}100%{transform:translateX(240%) skewX(-18deg)}} @keyframes pulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.82;transform:scale(1.08)}} @keyframes gridShift{from{transform:translateY(0)}to{transform:translateY(24px)}}
+    img,svg{display:block;max-width:100%} a{text-decoration:none;color:inherit} .site{position:relative;z-index:1} .container{width:var(--container);margin:0 auto}
+    .nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.58);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)} .nav-inner{width:var(--container);margin:0 auto;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:14px} .brand-mark{width:42px;height:42px;border-radius:14px;position:relative;overflow:hidden;background:linear-gradient(135deg, rgba(124,92,255,.54), rgba(85,214,255,.24));border:1px solid rgba(255,255,255,.16);box-shadow:0 0 40px rgba(124,92,255,.18), inset 0 1px 0 rgba(255,255,255,.14)}
+    .brand-mark::before,.brand-mark::after{content:"";position:absolute;border-left:2px solid rgba(255,255,255,.92);border-bottom:2px solid rgba(255,255,255,.92);transform:skewX(-18deg) rotate(-45deg);border-radius:4px} .brand-mark::before{inset:8px 11px}.brand-mark::after{inset:12px 16px;opacity:.45;border-color:var(--cyan)}
+    .brand-copy strong{display:block;font:700 12px/1 'Space Grotesk',sans-serif;letter-spacing:.2em;text-transform:uppercase}.brand-copy span{display:block;color:var(--soft);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:4px}
+    .nav-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap} .chip,.nav-links a{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;transition:.25s var(--ease)} .nav-links a:hover,.chip:hover{transform:translateY(-1px);color:var(--text);border-color:rgba(124,92,255,.4);background:rgba(124,92,255,.1)}
+    section{padding:96px 0}.hero{min-height:100svh;display:flex;align-items:center;padding:54px 0 72px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center}
+    .eyebrow,.signal-row span{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);backdrop-filter:blur(14px);color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+    .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--cyan));box-shadow:0 0 18px rgba(126,247,201,.8);animation:pulse 2.4s ease-in-out infinite}
+    h1,h2,h3{margin:0} h1{margin-top:18px;font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,7vw,6rem);line-height:.92;letter-spacing:-.05em;max-width:12ch} h1 .accent,h2 .accent{background:linear-gradient(135deg,var(--text) 0%, #cddafe 35%, var(--cyan) 70%, var(--mint) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{margin:22px 0 0;max-width:63ch;color:var(--muted);font-size:clamp(1rem,1.55vw,1.16rem);line-height:1.72}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 26px}
+    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px;transition:transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);overflow:hidden;isolation:isolate}
+    .btn::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);transform:translateX(-140%) skewX(-18deg)} .btn:hover{transform:translateY(-2px)} .btn:hover::before{animation:shimmer 1s var(--ease)}
+    .btn-primary{background:linear-gradient(135deg, rgba(124,92,255,.95), rgba(85,214,255,.95));color:#08111f;border-color:rgba(255,255,255,.15);box-shadow:0 16px 50px rgba(85,214,255,.18)} .btn-secondary{background:rgba(255,255,255,.04);color:var(--text)} .btn-ghost{background:rgba(255,255,255,.02);color:var(--muted)}
+    .signal-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}.hero-note{margin-top:18px;color:var(--soft);font-size:14px;line-height:1.7;max-width:62ch}
+    .hero-visual{position:relative;min-height:700px}.frame{position:absolute;inset:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));box-shadow:var(--shadow)}
+    .frame::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg, rgba(0,0,0,.8), transparent 95%);animation:gridShift 10s linear infinite alternate}
+    .hero-image{position:absolute;inset:18px 18px auto 18px;height:300px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0c1220}.hero-image img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.02) brightness(.78)}.hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,11,20,.08), rgba(7,11,20,.42) 52%, rgba(7,11,20,.78) 100%)}
+    .orb,.orb-2,.orb-3{position:absolute;border-radius:50%;filter:blur(10px);mix-blend-mode:screen}.orb{width:260px;height:260px;left:8%;top:10%;background:radial-gradient(circle, rgba(124,92,255,.6), transparent 70%)} .orb-2{width:320px;height:320px;right:-8%;top:20%;background:radial-gradient(circle, rgba(85,214,255,.45), transparent 68%)} .orb-3{width:260px;height:260px;left:28%;bottom:0;background:radial-gradient(circle, rgba(255,79,216,.22), transparent 68%)}
+    .hero-card,.metric-card,.quote-card,.feature,.offer-card,.persona,.faq details,.cta-panel,.b2b-card,.proof-card,.form-card,.footer-card,.stack-card,.concept-card,.deliver-card,.roadmap-visual{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);box-shadow:var(--shadow)}
+    .hero-card{position:absolute;padding:20px;border-radius:24px}.hero-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;letter-spacing:-.02em}.hero-card p{margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
+    .hero-card.top{top:244px;right:28px;width:min(310px,70%)} .hero-card.mid{left:28px;bottom:184px;width:min(290px,68%)} .hero-card.bottom{right:40px;bottom:42px;width:min(340px,74%)} .hero-card ul{margin:14px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.65}
+    .hero-wave{position:absolute;left:8%;right:8%;top:38%;height:220px;opacity:.9}.hero-wave svg{width:100%;height:100%}.hero-quote{position:absolute;left:28px;top:340px;writing-mode:vertical-rl;transform:rotate(180deg);font:600 18px/1 'Cormorant Garamond',serif;color:rgba(244,241,234,.44);letter-spacing:.08em}
+    .section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:end;margin-bottom:34px}.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}.kicker::before{content:"";width:36px;height:1px;background:linear-gradient(90deg,var(--violet),transparent)}
+    h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4.2vw,3.8rem);line-height:.98;letter-spacing:-.04em;max-width:12ch}.section-copy{color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:66ch}
+    .three-col,.four-col,.two-col{display:grid;gap:18px}.three-col{grid-template-columns:repeat(3,1fr)}.four-col{grid-template-columns:repeat(4,1fr)}.two-col{grid-template-columns:repeat(2,1fr)}
+    .feature,.offer-card,.persona,.proof-card,.stack-card,.b2b-card,.footer-card,.concept-card,.deliver-card{padding:24px;border-radius:24px}
+    .feature h3,.offer-card h3,.persona h3,.proof-card h3,.stack-card h3,.b2b-card h3,.concept-card h3,.deliver-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.22rem;letter-spacing:-.02em;margin-bottom:12px}
+    .feature p,.offer-card p,.persona p,.proof-card p,.stack-card p,.b2b-card p,.faq details p,.footer-card p,.concept-card p,.deliver-card p{color:var(--muted);line-height:1.72;margin:0}
+    .mini{font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.14em}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}.metric-card{padding:20px;border-radius:20px}.metric-card strong{display:block;font:700 clamp(1.8rem,3vw,2.8rem)/1 'Space Grotesk',sans-serif;letter-spacing:-.04em}.metric-card span{display:block;color:var(--muted);margin-top:8px;line-height:1.55;font-size:14px}
+    .compare{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}.quote-card{padding:28px;border-radius:28px;position:relative;overflow:hidden}.quote-card::after{content:"";position:absolute;inset:auto -10% -30% auto;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle, rgba(85,214,255,.18), transparent 70%)}.quote-card blockquote{margin:0;font:600 clamp(1.5rem,2.6vw,2.3rem)/1.15 'Cormorant Garamond',serif;max-width:14ch}.quote-card cite{display:block;margin-top:16px;color:var(--soft);font-style:normal;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+    .editorial-list{display:grid;gap:16px}.editorial-item{padding:20px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}.editorial-item strong{display:block;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}.step{padding:24px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.09);position:relative;overflow:hidden}.step::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--cyan),transparent)}.step-index{font:700 12px/1 'Space Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}.step h3{margin:16px 0 10px;font-family:'Space Grotesk',sans-serif;font-size:1.2rem}.step p{margin:0;color:var(--muted);line-height:1.7}
+    .persona .pill-line,.offer-card .pill-line,.b2b-card .pill-line{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 16px}.pill-line span{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .offer-card{position:relative;overflow:hidden}.offer-card.featured{border-color:rgba(85,214,255,.28);transform:translateY(-4px)}.offer-card.featured::before,.cta-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(124,92,255,.12), rgba(85,214,255,.08), transparent 60%);pointer-events:none}
+    .price{display:flex;align-items:baseline;gap:10px;margin:14px 0 8px}.price strong{font:700 clamp(2rem,4vw,3rem)/1 'Space Grotesk',sans-serif;letter-spacing:-.05em}.price span{color:var(--soft);font-size:14px}
+    .offer-list,.proof-card ul,.b2b-card ul,.footer-links{margin:16px 0 0;padding-left:18px;color:var(--muted);line-height:1.75}
+    .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.proof-card.placeholder{background:linear-gradient(180deg, rgba(214,179,106,.12), rgba(255,255,255,.03));border-color:rgba(214,179,106,.18)}.proof-card .who{display:block;margin-top:16px;color:var(--soft);font-size:12px;text-transform:uppercase;letter-spacing:.14em}
+    .logos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}.logo-tile{padding:18px;border-radius:18px;border:1px dashed rgba(255,255,255,.14);background:rgba(255,255,255,.025);color:var(--soft);display:flex;align-items:center;justify-content:center;min-height:82px;text-align:center;font:600 13px/1.5 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+    .faq{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;align-items:start}.faq details{padding:20px 22px;border-radius:20px;margin-bottom:14px}.faq summary{cursor:pointer;list-style:none;font-family:'Space Grotesk',sans-serif;font-size:1.06rem}.faq summary::-webkit-details-marker{display:none}.faq details p{margin-top:12px}
+    .b2b-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.stack-card{display:grid;gap:14px}.stack-row{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-top:1px solid rgba(255,255,255,.08)}.stack-row:first-child{border-top:0;padding-top:0}.stack-row strong{font-size:15px}.stack-row span{color:var(--soft);font-size:14px;line-height:1.6;max-width:28ch;text-align:right}
+    .cta-panel{position:relative;padding:32px;border-radius:30px;overflow:hidden}.cta-grid{display:grid;grid-template-columns:1fr .92fr;gap:18px;align-items:stretch}.form-card{padding:26px;border-radius:28px}
+    .field-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.field-grid .full{grid-column:1/-1}
+    input,select,textarea{width:100%;padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--text);font:500 14px/1.4 'Inter',sans-serif;outline:none} textarea{min-height:126px;resize:vertical} input::placeholder,textarea::placeholder{color:#90a0ba}
+    .form-note{margin-top:14px;color:var(--soft);font-size:12px;line-height:1.65}.footer{padding:28px 0 48px}.footer-card{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px;align-items:start}.footer-links{list-style:none;padding:0;margin-top:14px}.footer-links li+li{margin-top:8px}
+    .image-band{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}.image-card{position:relative;border-radius:24px;overflow:hidden;min-height:260px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}.image-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(1.02)}.image-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,11,20,.08), rgba(7,11,20,.58) 70%, rgba(7,11,20,.82) 100%)}.image-caption{position:absolute;left:18px;right:18px;bottom:18px;z-index:1}.image-caption strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1rem;margin-bottom:6px}.image-caption span{color:var(--muted);font-size:14px;line-height:1.6}
+    .concept-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.concept-stack{display:grid;gap:18px}.concept-card{min-height:100%}.concept-visual{position:relative;border-radius:26px;overflow:hidden;min-height:100%;border:1px solid rgba(255,255,255,.1);box-shadow:var(--shadow)}.concept-visual img{width:100%;height:100%;min-height:420px;object-fit:cover;filter:brightness(.7)}.concept-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,11,20,.08), rgba(7,11,20,.52) 60%, rgba(7,11,20,.88) 100%)}.concept-visual .overlay{position:absolute;left:22px;right:22px;bottom:22px;z-index:1}
+    .roadmap-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.roadmap-visual{padding:24px;border-radius:26px;display:grid;gap:14px}.roadmap-bar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;position:relative}.roadmap-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--violet),var(--cyan),var(--mint))}.roadmap-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.roadmap-mini div{padding:14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:13px;color:var(--muted)}
+    .deliver-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.deliver-card{position:relative;overflow:hidden}.deliver-card::after{content:"";position:absolute;inset:auto -20% -20% auto;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle, rgba(85,214,255,.12), transparent 70%)}
+    .success-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.success-card{padding:28px;border-radius:28px;position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(214,179,106,.12), rgba(255,255,255,.03));border:1px solid rgba(214,179,106,.18);box-shadow:var(--shadow)}.success-card::before{content:'“';position:absolute;right:20px;top:10px;font:700 90px/1 'Cormorant Garamond',serif;color:rgba(255,255,255,.08)}.success-card p{color:var(--muted);line-height:1.82}.success-card strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:12px}.success-sign{margin-top:18px;color:var(--soft);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease), transform .75s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media (max-width:1100px){.hero-grid,.section-head,.compare,.proof-grid,.faq,.b2b-panel,.cta-grid,.footer-card,.concept-grid,.roadmap-wrap{grid-template-columns:1fr}.three-col{grid-template-columns:repeat(2,1fr)}.four-col,.metric-grid,.timeline,.logos,.image-band,.deliver-grid,.roadmap-mini,.success-grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:auto;padding-top:42px}.hero-visual{min-height:660px}.hero-quote{display:none}}
+    @media (max-width:760px){section{padding:74px 0}.nav-inner{padding:14px 0}.three-col,.two-col,.four-col,.metric-grid,.timeline,.logos,.field-grid,.image-band,.deliver-grid,.roadmap-mini,.success-grid{grid-template-columns:1fr}h1{max-width:none}.hero-visual{min-height:680px}.hero-card.top,.hero-card.mid,.hero-card.bottom{position:relative;inset:auto;width:auto;margin:14px 16px}.frame{padding-top:18px}.hero-wave{left:5%;right:5%;top:40%;height:150px}.hero-image{height:220px}.footer{padding-bottom:32px}.concept-visual img{min-height:280px}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="#top" class="brand" aria-label="Vibramente inicio">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-copy">
+            <strong>Vibramente</strong>
+            <span>School-Lab of Agentic Intelligence</span>
+          </span>
+        </a>
+        <nav class="nav-links">
+          <a href="#propuesta">Propuesta</a>
+          <a href="#ofertas">Paquetes</a>
+          <a href="#metodologia">Metodología</a>
+          <a href="#casos-exito">Casos</a>
+          <a href="#b2b">Empresas</a>
+          <a href="#aplicar" class="chip">Aplicar</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="reveal visible">
+            <div class="eyebrow"><span class="dot"></span> Premium Cohort · Puembo / Quito · Founder Edition</div>
+            <h1>Convierte la IA en <span class="accent">algo útil para tu trabajo</span>.</h1>
+            <p class="lead">Vibramente es una escuela-lab premium donde founders, profesionales y equipos aprenden a crear <strong>agentes, procesos y sistemas reales</strong>. Aquí no vienes a ver teoría. Vienes a construir algo que te ahorre tiempo, te dé claridad y te ayude a avanzar más rápido.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#aplicar">Aplicar a la próxima cohorte</a>
+              <a class="btn btn-secondary" href="#ofertas">Ver paquetes</a>
+              <a class="btn btn-ghost" href="#b2b">Versión para empresas</a>
+            </div>
+            <div class="signal-row">
+              <span>Escuela + Lab + Sprint</span>
+              <span>Aprender haciendo</span>
+              <span>Resultados reales</span>
+            </div>
+            <p class="hero-note">Si ya entendiste que la IA importa, el siguiente paso es usarla bien. Vibramente te ayuda a pasar de la curiosidad a la implementación con orden, acompañamiento y buen criterio.</p>
+          </div>
+
+          <div class="hero-visual reveal visible" aria-label="Visual premium de Vibramente">
+            <div class="frame">
+              <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Equipo creativo trabajando con tecnología e inteligencia artificial" />
+              </div>
+              <div class="orb"></div>
+              <div class="orb-2"></div>
+              <div class="orb-3"></div>
+              <div class="hero-quote">menos ruido · más claridad · más acción</div>
+              <div class="hero-wave">
+                <svg viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="waveA" x1="0" y1="0" x2="1000" y2="300">
+                      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.95"/>
+                      <stop offset="52%" stop-color="#55D6FF" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#7EF7C9" stop-opacity="0.75"/>
+                    </linearGradient>
+                    <filter id="glow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  </defs>
+                  <path d="M20 188C120 118 178 118 266 164C352 210 420 230 502 160C592 84 660 82 748 136C828 186 892 182 980 122" stroke="url(#waveA)" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+                </svg>
+              </div>
+              <div class="hero-card top">
+                <div class="mini">Vibramente Agentic Lab</div>
+                <h3>De la idea al sistema</h3>
+                <p>En poco tiempo sales con una forma clara de usar IA en tu negocio, tu trabajo o tu equipo.</p>
+              </div>
+              <div class="hero-card mid">
+                <div class="mini">Lo que construyes</div>
+                <h3>Agentes, procesos y un plan claro</h3>
+                <ul>
+                  <li>un caso de uso bien elegido</li>
+                  <li>plantillas que sí puedes reutilizar</li>
+                  <li>una demo o sistema listo para avanzar</li>
+                </ul>
+              </div>
+              <div class="hero-card bottom">
+                <div class="mini">Ideal para</div>
+                <h3>Founders, profesionales y equipos</h3>
+                <p>Personas que quieren resultados reales y no perderse entre herramientas, promesas vacías o tutoriales eternos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="propuesta" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="kicker">Propuesta de valor</div>
+              <h2>No es <span class="accent">otro curso más de IA</span>.</h2>
+            </div>
+            <p class="section-copy">Vibramente mezcla tres cosas en un mismo lugar: <strong>aprendizaje, práctica y avance real</strong>. Aquí entiendes lo importante, pruebas lo necesario y construyes algo útil para tu contexto.</p>
+          </div>
+
+          <div class="compare">
+            <div class="quote-card">
+              <blockquote>“No vienes a aprender IA por moda. Vienes a usarla mejor y a salir con algo que ya te sirva.”</blockquote>
+              <cite>Promesa principal</cite>
+            </div>
+            <div class="editorial-list">
+              <div class="editorial-item"><strong>Escuela</strong>Entiendes qué vale la pena, qué no, y cómo tomar mejores decisiones con IA.</div>
+              <div class="editorial-item"><strong>Lab</strong>Construyes con acompañamiento, pruebas, corriges y mejoras sobre algo real.</div>
+              <div class="editorial-item"><strong>Sprint</strong>Avanzas rápido con foco, pasos claros y entregables que sí puedes usar después.</div>
+            </div>
+          </div>
+
+          <div class="concept-grid" style="margin-top:26px;">
+            <div class="concept-stack">
+              <article class="concept-card">
+                <div class="mini">Concepto clave</div>
+                <h3>Menos teoría, más uso real</h3>
+                <p>La idea de Vibramente es simple: que la IA deje de ser una promesa lejana y se convierta en una herramienta concreta para pensar mejor, vender mejor, atender mejor o trabajar con más orden.</p>
+              </article>
+              <article class="concept-card">
+                <div class="mini">Infografía simple</div>
+                <h3>Cómo se crea valor</h3>
+                <p><strong>Problema claro</strong> → <strong>Diseño simple</strong> → <strong>Construcción guiada</strong> → <strong>Uso real</strong></p>
+              </article>
+            </div>
+            <div class="concept-visual">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80" alt="Reunión estratégica de equipo revisando ideas y procesos" />
+              <div class="overlay">
+                <div class="mini">Conceptos aterrizados</div>
+                <h3 style="margin-top:8px;font-family:'Space Grotesk',sans-serif;">Claridad, estructura y acción</h3>
+                <p style="margin:8px 0 0;color:var(--muted);max-width:48ch">Vibramente organiza el trabajo con IA para que no dependa del azar ni de tutoriales sueltos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card"><strong>2–4</strong><span>semanas para pasar de la duda a una implementación guiada.</span></article>
+            <article class="metric-card"><strong>8–12</strong><span>personas por cohorte para mantener atención real y feedback de calidad.</span></article>
+            <article class="metric-card"><strong>1–2</strong><span>agentes o procesos funcionales como meta real del programa principal.</span></article>
+            <article class="metric-card"><strong>B2C + B2B</strong><span>programas para personas y también para equipos o empresas.</span></article>
+          </div>
+
+          <div class="image-band">
+            <div class="image-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Equipo colaborando en mesa de trabajo" /><div class="image-caption"><strong>Trabajo guiado</strong><span>Aprendes con estructura, práctica y acompañamiento real.</span></div></div>
+            <div class="image-card"><img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80" alt="Persona usando laptop para trabajo creativo y tecnológico" /><div class="image-caption"><strong>Resultados aplicables</strong><span>No solo entiendes la IA: la conviertes en un sistema útil.</span></div></div>
+            <div class="image-card"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" alt="Espacio premium de trabajo y colaboración" /><div class="image-caption"><strong>Experiencia premium</strong><span>Ambiente boutique para personas que quieren avanzar en serio.</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Resultados</div><h2>Lo que te llevas en <span class="accent">Vibramente</span>.</h2></div>
+            <p class="section-copy">La idea no es que “sepas más de IA”. La idea es que trabajes mejor con ella, tomes mejores decisiones y tengas algo concreto que usar cuando termine el programa.</p>
+          </div>
+          <div class="three-col">
+            <article class="feature"><div class="mini">Claridad</div><h3>Encuentras dónde sí vale la pena usar IA</h3><p>Aprendes a elegir casos de uso útiles, no solo ideas que suenan bien.</p></article>
+            <article class="feature"><div class="mini">Activo real</div><h3>Sales con algo que ya puedes usar</h3><p>Un agente, proceso o sistema adaptado a tu forma de trabajar.</p></article>
+            <article class="feature"><div class="mini">Método</div><h3>Pasas del prompt suelto a un sistema con orden</h3><p>Aprendes a trabajar con contexto, roles, pasos y revisión.</p></article>
+            <article class="feature"><div class="mini">Acompañamiento</div><h3>No te quedas solo frente a la herramienta</h3><p>Hay guía, feedback y dirección para que avances con menos fricción.</p></article>
+            <article class="feature"><div class="mini">Velocidad</div><h3>Acortas el camino entre idea y ejecución</h3><p>Ves resultados temprano y construyes sobre algo que sí funciona.</p></article>
+            <article class="feature"><div class="mini">Ventaja</div><h3>Tu trabajo gana más valor</h3><p>Mejor criterio, más velocidad y una forma más fuerte de diferenciarte.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Para quién es</div><h2>Hecho para personas que quieren pasar de mirar a construir.</h2></div>
+            <p class="section-copy">Vibramente no está hecho para el mercado masivo. Está pensado para personas y equipos que valoran el buen criterio, el acompañamiento y los resultados concretos.</p>
+          </div>
+          <div class="three-col">
+            <article class="persona"><div class="mini">Perfil 01</div><h3>Founders y gerentes</h3><p>Quieren más velocidad, mejores procesos y una ventaja real en su negocio.</p><div class="pill-line"><span>Eficiencia</span><span>Visión</span><span>Velocidad</span></div></article>
+            <article class="persona"><div class="mini">Perfil 02</div><h3>Consultores y profesionales</h3><p>Buscan entregar mejor, ahorrar tiempo y convertir IA en una ventaja profesional clara.</p><div class="pill-line"><span>Más valor</span><span>Más output</span><span>Mejor servicio</span></div></article>
+            <article class="persona"><div class="mini">Perfil 03</div><h3>Equipos pequeños</h3><p>Necesitan mejoras rápidas en marketing, ventas, operaciones o productividad.</p><div class="pill-line"><span>Quick wins</span><span>Orden</span><span>Adopción</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="metodologia" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Metodología Vibramente</div><h2>Aprender, construir y poner en marcha.</h2></div>
+            <p class="section-copy">La metodología de Vibramente es simple de entender: primero vemos qué problema vale la pena resolver, luego diseñamos una solución clara, después la construimos y finalmente la dejamos lista para usar.</p>
+          </div>
+          <div class="roadmap-wrap">
+            <div>
+              <div class="timeline">
+                <article class="step"><div class="step-index">Paso 01</div><h3>Detecta</h3><p>Vemos qué tarea, problema o cuello de botella tiene más sentido trabajar primero.</p></article>
+                <article class="step"><div class="step-index">Paso 02</div><h3>Diseña</h3><p>Ordenamos la solución: objetivo, contexto, pasos, roles y qué significa que esté bien hecho.</p></article>
+                <article class="step"><div class="step-index">Paso 03</div><h3>Construye</h3><p>Armamos el agente, el proceso o el sistema con apoyo práctico y revisiones.</p></article>
+                <article class="step"><div class="step-index">Paso 04</div><h3>Implementa</h3><p>Lo probamos, hacemos la demo y dejas claro qué sigue para usarlo de verdad.</p></article>
+              </div>
+            </div>
+            <div class="roadmap-visual">
+              <div class="mini">Roadmap visual</div>
+              <h3 style="font-family:'Space Grotesk',sans-serif;">Cómo avanza una cohorte</h3>
+              <div class="roadmap-bar"><span style="width:25%"></span></div>
+              <div class="roadmap-bar"><span style="width:50%"></span></div>
+              <div class="roadmap-bar"><span style="width:75%"></span></div>
+              <div class="roadmap-bar"><span style="width:100%"></span></div>
+              <div class="roadmap-mini">
+                <div><strong style="display:block;color:#fff;margin-bottom:6px">Semana 1</strong>Elegir bien el caso.</div>
+                <div><strong style="display:block;color:#fff;margin-bottom:6px">Semana 2</strong>Diseñar la solución.</div>
+                <div><strong style="display:block;color:#fff;margin-bottom:6px">Semana 3</strong>Construir y probar.</div>
+                <div><strong style="display:block;color:#fff;margin-bottom:6px">Semana 4</strong>Mostrar, ajustar y seguir.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Entregables</div><h2>Entregables más claros, visuales y dinámicos.</h2></div>
+            <p class="section-copy">Cada paquete debe dejar evidencia concreta de avance. Eso hace que el valor se sienta más alto y mucho más fácil de explicar.</p>
+          </div>
+          <div class="deliver-grid">
+            <article class="deliver-card"><div class="mini">Entregable 01</div><h3>Mapa de oportunidades</h3><p>Una vista clara de qué problema atacar primero y dónde está el mayor retorno.</p></article>
+            <article class="deliver-card"><div class="mini">Entregable 02</div><h3>Plantillas listas para usar</h3><p>Prompts, briefs y estructuras que ordenan el trabajo y ahorran tiempo.</p></article>
+            <article class="deliver-card"><div class="mini">Entregable 03</div><h3>Agente o sistema funcional</h3><p>No solo entiendes la idea: sales con una base concreta que ya se puede usar.</p></article>
+            <article class="deliver-card"><div class="mini">Entregable 04</div><h3>Demo + siguiente hoja de ruta</h3><p>Presentación del resultado y plan claro para iterar, mejorar o escalar.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ofertas" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Paquetes</div><h2>Elige el nivel de acompañamiento que necesitas.</h2></div>
+            <p class="section-copy">La escalera de valor es clara: una entrada premium para empezar bien, un programa central para construir con más profundidad y una versión alta para quienes quieren transformación real en su trabajo o equipo.</p>
+          </div>
+          <div class="three-col">
+            <article class="offer-card">
+              <div class="mini">Paquete 01 · Entrada premium</div>
+              <h3>Vibramente Starter</h3>
+              <p>Ideal para quienes quieren entrar con claridad, entender el método y construir su primer caso útil con guía directa.</p>
+              <div class="price"><strong>USD 599</strong><span>ticket inicial</span></div>
+              <div class="pill-line"><span>Workshop guiado</span><span>Primer sistema</span><span>Entrada premium</span></div>
+              <ul class="offer-list"><li>sesión intensiva para elegir un caso de uso</li><li>marco claro para usar IA con orden</li><li>primer agente o proceso en versión funcional</li><li>plantillas y guía para seguir avanzando</li></ul>
+              <div class="hero-actions"><a class="btn btn-secondary" href="#aplicar">Quiero empezar aquí</a></div>
+            </article>
+            <article class="offer-card featured">
+              <div class="mini">Paquete 02 · Programa central</div>
+              <h3>Vibramente Agentic Lab</h3>
+              <p>El programa boutique para diseñar, construir y dejar funcionando un sistema real con acompañamiento de mayor profundidad.</p>
+              <div class="price"><strong>USD 1,500</strong><span>programa core</span></div>
+              <div class="pill-line"><span>Producto principal</span><span>Cohorte pequeña</span><span>Construcción guiada</span></div>
+              <ul class="offer-list"><li>sesiones en vivo con trabajo aplicado</li><li>acompañamiento y revisión durante el proceso</li><li>uno o dos activos funcionales según el caso</li><li>demo final y plan claro de continuidad</li></ul>
+              <div class="hero-actions"><a class="btn btn-primary" href="#aplicar">Aplicar al programa</a></div>
+            </article>
+            <article class="offer-card">
+              <div class="mini">Paquete 03 · Alto valor</div>
+              <h3>Vibramente Signature / Team Sprint</h3>
+              <p>La opción premium para quienes quieren una intervención más profunda, más acompañamiento y un resultado listo para mover su negocio o equipo.</p>
+              <div class="price"><strong>USD 4,999</strong><span>premium / equipo</span></div>
+              <div class="pill-line"><span>Alta cercanía</span><span>Más profundidad</span><span>Implementación real</span></div>
+              <ul class="offer-list"><li>diagnóstico y priorización más estratégica</li><li>construcción de sistema con mayor personalización</li><li>soporte cercano para adopción inicial</li><li>ideal para founders, líderes o equipos que quieren avanzar en serio</li></ul>
+              <div class="hero-actions"><a class="btn btn-secondary" href="#b2b">Quiero esta versión</a></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="casos-exito" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Casos de éxito</div><h2>Resultados reales que ya están marcando diferencia.</h2></div>
+            <p class="section-copy">Estos casos ayudan a mostrar que la IA agéntica no es teoría. Cuando se aplica bien, cambia la operación, mejora la atención y ahorra tiempo y recursos.</p>
+          </div>
+          <div class="success-grid">
+            <article class="success-card">
+              <strong>FACTORY BIKE EC</strong>
+              <p>Desde que implementamos IA agéntica, estamos transformando los procesos internos de la compañía. Pensamos en una expansión internacional y sabemos que tenemos el servicio al cliente más personalizado en el sector de motocicletas del Ecuador. Tener una estrategia agéntica cambió las reglas del juego.</p>
+              <div class="success-sign">Att. Rigo Vintimilla · CEO Factory Bike</div>
+            </article>
+            <article class="success-card">
+              <strong>CLUB LOS CHILLOS</strong>
+              <p>Desde que implementamos IA agéntica, hemos desarrollado estrategias que harán ahorrar a la compañía miles de dólares al año. Temas de gastos y operaciones que antes tomaban mucho tiempo y recursos, ahora los hacemos en minutos.</p>
+              <div class="success-sign">Att. Elisa Salgado · CEO Club Los Chillos</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="b2b" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <div><div class="kicker">Versión para empresas</div><h2>Para equipos que quieren resultados rápidos y claros.</h2></div>
+            <p class="section-copy">Vibramente también abre una ruta clara para empresas. Menos charla abstracta, más foco en un caso útil, una primera implementación y un plan corto para adopción.</p>
+          </div>
+          <div class="b2b-panel">
+            <article class="b2b-card"><div class="mini">Sprint corporativo</div><h3>Del interés a un caso de uso real</h3><p>Ideal para pymes y equipos que quieren identificar una oportunidad clara, diseñar una solución útil y salir con una primera versión funcional o un plan serio para implementarla.</p><div class="pill-line"><span>Discovery</span><span>Workshop</span><span>Prototipo</span><span>Handoff</span></div><ul><li>alineación rápida con líderes</li><li>priorización de oportunidades por impacto</li><li>prototipo o plan de trabajo concreto</li><li>hoja de ruta inicial para 30 días</li></ul><div class="hero-actions"><a class="btn btn-primary" href="#aplicar">Quiero evaluar mi equipo</a></div></article>
+            <article class="stack-card"><div class="mini">Ideal para</div><h3>Equipos que necesitan moverse ya</h3><div class="stack-row"><strong>Marketing / ventas</strong><span>prospección, research, propuestas, contenido y seguimiento</span></div><div class="stack-row"><strong>Operaciones</strong><span>documentación, SOPs, coordinación, reportes y productividad</span></div><div class="stack-row"><strong>Liderazgo</strong><span>priorización, quick wins y adopción inicial</span></div><div class="stack-row"><strong>Innovación / talento</strong><span>pilotos internos y formas responsables de uso</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="reveal">
+        <div class="container faq">
+          <div><div class="kicker">FAQ</div><h2>Preguntas frecuentes, respondidas de forma simple.</h2><p class="section-copy">La idea aquí es bajar fricción. Responder claro. Sin adornos innecesarios.</p></div>
+          <div>
+            <details open><summary>¿Necesito saber programar?</summary><p>No. Está pensado para perfiles no técnicos y semi-técnicos que quieren usar IA con más orden y mejores resultados.</p></details>
+            <details><summary>¿Es un curso teórico?</summary><p>No. El centro de Vibramente es construir algo útil, no acumular teoría.</p></details>
+            <details><summary>¿Voy a salir con algo real?</summary><p>Sí. Según el paquete, la meta es salir con un agente, un proceso o una base funcional clara para seguir avanzando.</p></details>
+            <details><summary>¿Y si todavía no tengo claro qué hacer con IA?</summary><p>No hay problema. Parte del trabajo es ayudarte a elegir bien qué vale la pena resolver primero.</p></details>
+            <details><summary>¿Sirve aunque mi negocio no sea tecnológico?</summary><p>Sí. De hecho, una de las mejores oportunidades está en negocios de servicios, profesionales y equipos que quieren mejorar cómo trabajan.</p></details>
+            <details><summary>¿Por qué el precio no compite con cursos baratos?</summary><p>Porque aquí pagas por claridad, acompañamiento, foco y resultados que sí puedes usar después.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section id="aplicar" class="reveal">
+        <div class="container">
+          <div class="cta-panel">
+            <div class="cta-grid">
+              <div>
+                <div class="kicker">CTA final</div>
+                <h2>Pasa de la curiosidad a la implementación.</h2>
+                <p class="section-copy">Aplica a la próxima cohorte, elige el paquete que más te conviene o abre una conversación para tu equipo. La página ya queda lista para vender, conectar formularios y desplegar campañas.</p>
+                <div class="hero-actions"><a class="btn btn-primary" href="#formulario">Quiero aplicar ahora</a><a class="btn btn-secondary" href="mailto:hola@vibramente.studio">Solicitar brochure</a></div>
+                <div class="signal-row"><span>Cupos boutique · 8–12</span><span>Próxima cohorte · [mes / fecha]</span></div>
+              </div>
+              <div class="form-card" id="formulario">
+                <div class="mini">Formulario visual / CTA</div>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-top:8px">Aplicar a Vibramente</h3>
+                <p style="color:var(--muted);line-height:1.7;margin-top:10px">Aplicación conectada a Firebase para captura de leads.</p>
+                <form id="leadForm">
+                  <div class="field-grid">
+                    <input type="text" name="nombre" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required><input type="text" name="empresa" placeholder="Empresa o proyecto" aria-label="Empresa o proyecto"><input type="email" name="email" placeholder="Email" aria-label="Email" required><input type="text" name="whatsapp" placeholder="WhatsApp" aria-label="WhatsApp">
+                    <select name="interes" aria-label="Tipo de interés"><option selected>Tipo de interés</option><option>Paquete 1 · Vibramente Starter</option><option>Paquete 2 · Vibramente Agentic Lab</option><option>Paquete 3 · Vibramente Signature / Team Sprint</option></select>
+                    <input type="text" name="plazo" placeholder="Plazo de decisión" aria-label="Plazo de decisión"><textarea class="full" name="objetivo" placeholder="¿Qué te gustaría resolver, mejorar o construir con IA en este momento?" aria-label="Objetivo principal" required></textarea>
+                  </div>
+                  <div class="hero-actions" style="margin:18px 0 0"><button class="btn btn-primary" type="submit" id="submitBtn">Enviar aplicación</button><a class="btn btn-ghost" href="https://wa.me/593999793094">WhatsApp</a></div>
+                  <p class="form-note" id="formMsg">Tus datos se guardarán en Firebase.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-card">
+        <div>
+          <a href="#top" class="brand" aria-label="Vibramente volver arriba"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>Vibramente</strong><span>Escuela-Lab Premium de Inteligencia Agéntica</span></span></a>
+          <p style="margin-top:18px">Una marca creada para convertir interés en IA en capacidad real, criterio práctico y sistemas que sí ayudan a trabajar mejor.</p>
+        </div>
+        <div>
+          <div class="mini">Navegación</div>
+          <ul class="footer-links"><li><a href="#propuesta">Propuesta de valor</a></li><li><a href="#ofertas">Paquetes</a></li><li><a href="#metodologia">Metodología</a></li><li><a href="#casos-exito">Casos de éxito</a></li><li><a href="#b2b">Versión para empresas</a></li></ul>
+        </div>
+        <div>
+          <div class="mini">Contacto / placeholders</div>
+          <ul class="footer-links"><li>hola@vibramente.studio</li><li>WhatsApp: +593 XXX XXX XXX</li><li>Puembo / Quito / Ecuador</li><li>IG / LinkedIn: @vibramente</li></ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    items.forEach(el => observer.observe(el));
+  </script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDVP4Gg-nQ_0vZNhII-LjHMpDT4mH8_PZw",
+  authDomain: "vibramente-ce5b8.firebaseapp.com",
+  projectId: "vibramente-ce5b8",
+  storageBucket: "vibramente-ce5b8.firebasestorage.app",
+  messagingSenderId: "520406145835",
+  appId: "1:520406145835:web:bf748898aa53092ca5c36e",
+  measurementId: "G-YKMQE5GY83"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const form = document.getElementById('leadForm');
+const msg = document.getElementById('formMsg');
+const btn = document.getElementById('submitBtn');
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    btn.disabled = true;
+    msg.textContent = 'Enviando...';
+    try {
+      await addDoc(collection(db, 'leads'), {
+        ...data,
+        source: 'landing-vibramente',
+        page: location.href,
+        createdAt: serverTimestamp()
+      });
+      form.reset();
+      msg.textContent = 'Gracias. Recibimos tu solicitud.';
+    } catch (err) {
+      console.error(err);
+      msg.textContent = 'No se pudo enviar todavía. Revisa Firestore/API del proyecto.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
+</script>
+</body>
+</html>
